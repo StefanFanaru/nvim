@@ -43,12 +43,16 @@ vim.opt.smartcase = true
 vim.opt.splitright = true
 vim.opt.inccommand = "split"
 
-if os.getenv("IS_BASH") == "true" then
-	vim.opt.shellcmdflag = "-c"
-	vim.opt.undodir = "~/bin/.vim/undotree"
-	-- vim.opt.ssl = true
+if os.getenv("IS_BASH") == "true" or os.getenv("IS_ZSH") == true then
+	local home = os.getenv("HOME")
+	vim.opt.undodir = home .. "/bin/.vim/undotree"
 else
 	vim.opt.undodir = os.getenv("")
+end
+
+if os.getenv("IS_BASH") == "true" then
+	vim.opt.shellcmdflag = "-c"
+	-- vim.opt.ssl = true
 end
 
 vim.opt.smoothscroll = true
